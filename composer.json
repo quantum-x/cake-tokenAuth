@@ -8,9 +8,7 @@
         "authenticate",
         "authentication",
     ],
-    "homepage": "http://github.com/quantum-x/cakephp-tokenAuth",
     "require": {
-        "firebase/php-jwt": "~2.0",
         "composer/installers": "*"
     },
     "extra": {
