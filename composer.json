@@ -1,13 +1,6 @@
 {
 	"name": "quantum-x/cake-tokenAuth",
-	"version": "0.1.0",
 	"type": "cakephp-plugin",
-	"description": "Cakephp 2 Token Authentication",
-	"keywords": [
-		"cakephp",
-		"authenticate",
-		"authentication"
-	],
 	"require": {
 		"composer/installers": "*"
 	},
