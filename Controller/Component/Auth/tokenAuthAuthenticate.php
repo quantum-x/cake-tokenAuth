@@ -144,7 +144,6 @@ class tokenAuthAuthenticate extends BaseAuthenticate
         if (!empty($this->settings['scope'])) {
 			$conditions = array_merge($conditions, $this->settings['scope']);
 		}
-
 		$result = ClassRegistry::init($tokenModel)->find('first', array(
 			'conditions' => $conditions,
 			'contain' => $this->settings['contain'],
@@ -153,6 +152,11 @@ class tokenAuthAuthenticate extends BaseAuthenticate
 		if (empty($result) || empty($result[$model])) {
 			return false;
 		}
+
+        //Perform the callback if required
+        if (!empty($this->settings['authorizedCallback'])) {
+            ClassRegistry::init($tokenModel)->touch($result['ApiToken']['id']);
+        }
 
 		$user = $result[$model];
 		unset($result[$model]);
