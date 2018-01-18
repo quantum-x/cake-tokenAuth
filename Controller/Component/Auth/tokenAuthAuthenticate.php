@@ -155,10 +155,13 @@ class tokenAuthAuthenticate extends BaseAuthenticate
 
         //Perform the callback if required
         if (!empty($this->settings['authorizedCallback'])) {
-            ClassRegistry::init($tokenModel)->touch($result['ApiToken']['id']);
+            $callback_result = ClassRegistry::init($tokenModel)->touch($result['ApiToken']['id']);
+            if ($callback_result !== false) {
+                $result[$tokenModel] = $callback_result[$tokenModel];
+            }
         }
 
-		$user = $result[$model];
+        $user = $result[$model];
 		unset($result[$model]);
 
 		return array_merge($user, $result);
